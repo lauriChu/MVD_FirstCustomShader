@@ -63,13 +63,16 @@ void GraphicsSystem::update(float dt) {
 		updateLights_();
     
 	/* SHADOW PASS FOR ONE LIGHT */
-
+	glViewport(0, 0, frame_.width, frame_.height);
+	glBindFramebuffer(GL_FRAMEBUFFER, frame_.framebuffer);
+	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
 
 	/* SCREEN PASS */
 
-	bindAndClearScreen_();
+	
 	resetShaderAndMaterial_();
     for (auto &mesh : ECS.getAllComponents<Mesh>()) {
         renderMeshComponent_(mesh);
@@ -77,14 +80,20 @@ void GraphicsSystem::update(float dt) {
     renderEnvironment_();
 
 	/* VIEW SHADOW FRAME */
-
-	//glDisable(GL_DEPTH_TEST);
-	//glViewport(0, 0, GLsizei(viewport_width_ / 4), GLsizei(viewport_height_ / 4)); //draw bottom corner
-	//useShader(screen_depth_shader_);
-	//screen_depth_shader_->setTexture(U_SCREEN_TEXTURE, shadow_frame_.color_textures[0], 0);
-	//geometries_[screen_space_geom_].render();
-	//glEnable(GL_DEPTH_TEST);
-	//glViewport(0, 0, GLsizei(viewport_width_), GLsizei(viewport_height_));
+	bindAndClearScreen_();
+	resetShaderAndMaterial_();
+	for (auto &mesh : ECS.getAllComponents<Mesh>()) {
+		renderMeshComponent_(mesh);
+	}
+	renderEnvironment_();
+	glDisable(GL_DEPTH_TEST);
+	glViewport(0, 0, GLsizei(viewport_width_ / 4), GLsizei(viewport_height_ / 4)); //draw bottom corner
+	useShader(screen_depth_shader_);
+	screen_depth_shader_->setTexture(U_SCREEN_TEXTURE, shadow_frame_.color_textures[0], 0);
+	geometries_[screen_space_geom_].render();
+	glViewport(0, 0, GLsizei(viewport_width_), GLsizei(viewport_height_));
+	glEnable(GL_DEPTH_TEST);
+	
 }
 
 //renders a mesh from a Light/Camera, only setting its MVP
