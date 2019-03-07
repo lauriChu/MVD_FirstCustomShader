@@ -30,8 +30,8 @@ void Game::init(int w, int h) {
 	Shader* cubemap_shader = graphics_system_.loadShader("data/shaders/cubemap.vert", "data/shaders/cubemap.frag");
 	Shader* phong_shader = graphics_system_.loadShader("data/shaders/phong.vert", "data/shaders/phong.frag");
 	Shader* reflection_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
-	Shader* blur_shader = graphics_system_.loadShader("data/shaders/blur2.vert", "data/shaders/blur2.frag");
-	Shader* screen_shader = graphics_system_.loadShader("data/shaders/screen.vert", "data/shaders/screen.frag");
+	Shader* blur_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
+	Shader* screen_shader = graphics_system_.loadShader("data/shaders/blur3.vert", "data/shaders/blur3.frag");
 
 	/******** GEOMETRIES **********/
 
