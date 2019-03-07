@@ -38,7 +38,7 @@ void Game::init(int w, int h) {
 
 	int geom_floor = graphics_system_.createGeometryFromFile("data/assets/floor_40x40.obj");
 	int cubemap_geometry = graphics_system_.createGeometryFromFile("data/assets/cubemap.obj");
-	int sphere_geom = graphics_system_.createGeometryFromFile("data/assets/sphere.obj");
+	int sphere_geom = graphics_system_.createGeometryFromFile("data/assets/nanosuit.obj");
 
 	/******** ENVIRONMENT **********/
 
