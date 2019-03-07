@@ -30,8 +30,9 @@ void Game::init(int w, int h) {
 	Shader* cubemap_shader = graphics_system_.loadShader("data/shaders/cubemap.vert", "data/shaders/cubemap.frag");
 	Shader* phong_shader = graphics_system_.loadShader("data/shaders/phong.vert", "data/shaders/phong.frag");
 	Shader* reflection_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
-	Shader* blur_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
-	Shader* screen_shader = graphics_system_.loadShader("data/shaders/blur3.vert", "data/shaders/blur3.frag");
+	Shader* iridiscent_shader = graphics_system_.loadShader("data/shaders/iridiscent.vert", "data/shaders/iridiscent.frag");
+	Shader* blur_shader = graphics_system_.loadShader("data/shaders/blur.vert", "data/shaders/blur.frag");
+	Shader* screen_shader = graphics_system_.loadShader("data/shaders/screen.vert", "data/shaders/screen.frag");
 
 	/******** GEOMETRIES **********/
 
@@ -54,6 +55,11 @@ void Game::init(int w, int h) {
 	mat_blue_check.shader_id = blur_shader->program;
 	mat_blue_check.diffuse_map = Parsers::parseTexture("data/assets/block_blue.tga");
 	mat_blue_check.specular = lm::vec3(0, 0, 0);
+
+	int mat_iridiscent_index = graphics_system_.createMaterial();
+	Material& ref_mat_iris = graphics_system_.getMaterial(mat_iridiscent_index);
+	ref_mat_iris.shader_id = iridiscent_shader->program;
+	ref_mat_iris.cube_map = cubemap_texture;
 
 	int mat_reflection_index = graphics_system_.createMaterial();
 	Material& ref_mat = graphics_system_.getMaterial(mat_reflection_index);
@@ -82,11 +88,11 @@ void Game::init(int w, int h) {
 	ECS.getComponentFromEntity<Transform>(sphere_entity).translate(1.0f, 6.0f, 5.0f);
 	Mesh& sphere_mesh = ECS.createComponentForEntity<Mesh>(sphere_entity);	
 	sphere_mesh.geometry = sphere_geom;
-	sphere_mesh.material = mat_blue_check_index;
+	sphere_mesh.material = mat_iridiscent_index;
 
 	//reflective sphere
     int ref_entity = ECS.createEntity("reflection_sphere");
-    ECS.getComponentFromEntity<Transform>(ref_entity).translate(-1.5f, 10.0f, 10.0f);
+    ECS.getComponentFromEntity<Transform>(ref_entity).translate(-1.5f, 6.0f, 5.0f);
     Mesh& ref_mesh = ECS.createComponentForEntity<Mesh>(ref_entity);
     ref_mesh.geometry = sphere_geom;
     ref_mesh.material = mat_reflection_index;
