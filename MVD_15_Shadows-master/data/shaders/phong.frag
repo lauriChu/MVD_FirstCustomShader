@@ -100,30 +100,6 @@ void main(){
 		//final color
         final_color += ((diffuse_color + specular_color) * attenuation * spot_cone_intensity);
 	}
-vec2 pixelSize = vec2(1.0,1.0);
-        vec2 pos = final_color.xy * pixelSize;
 
-    float values[9];
-        values[0]=0.05;
-        values[1]=0.09;
-        values[2]=0.11;
-        values[3]=0.15;
-        values[4]=0.2;
-        values[5]=0.15;
-        values[6]=0.11;
-        values[7]=0.09;
-        values[8]=0.05;
-
-        
-
-        vec2 curSamplePos = vec2(pos.x,pos.y-4.0*pixelSize.y);
-        for(int i=0;i<9;i++)
-        {
-            result+=texture(u_diffuse_map,curSamplePos)*values[i];
-            curSamplePos.y+=pixelSize.y;
-        }
-
-    fragColor = vec4(result.xyz, 1.0);
-    //fragColor = vec4(1.0,0.0,0.0,1.0);
-	//fragColor = vec4(final_color, 1.0);
+	fragColor = vec4(final_color, 1.0);
 }

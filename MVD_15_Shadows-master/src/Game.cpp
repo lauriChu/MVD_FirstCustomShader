@@ -30,6 +30,8 @@ void Game::init(int w, int h) {
 	Shader* cubemap_shader = graphics_system_.loadShader("data/shaders/cubemap.vert", "data/shaders/cubemap.frag");
 	Shader* phong_shader = graphics_system_.loadShader("data/shaders/phong.vert", "data/shaders/phong.frag");
 	Shader* reflection_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
+	Shader* blur_shader = graphics_system_.loadShader("data/shaders/blur2.vert", "data/shaders/blur2.frag");
+	Shader* screen_shader = graphics_system_.loadShader("data/shaders/screen.vert", "data/shaders/screen.frag");
 
 	/******** GEOMETRIES **********/
 
@@ -49,7 +51,7 @@ void Game::init(int w, int h) {
 	/******** MATERIALS **********/
 	int mat_blue_check_index = graphics_system_.createMaterial();
 	Material& mat_blue_check = graphics_system_.getMaterial(mat_blue_check_index);
-	mat_blue_check.shader_id = phong_shader->program;
+	mat_blue_check.shader_id = blur_shader->program;
 	mat_blue_check.diffuse_map = Parsers::parseTexture("data/assets/block_blue.tga");
 	mat_blue_check.specular = lm::vec3(0, 0, 0);
 

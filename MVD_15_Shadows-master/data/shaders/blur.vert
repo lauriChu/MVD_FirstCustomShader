@@ -14,6 +14,10 @@ out vec3 v_normal;
 out vec3 v_vertex_world_pos;
 out vec3 v_cam_dir;
 
+
+const int GAUSSIAN_SAMPLES = 9;
+varying vec2 blurCoordinates[GAUSSIAN_SAMPLES];
+
 void main(){
 
 	v_uv = a_uv;
@@ -27,4 +31,17 @@ void main(){
 	v_cam_dir = u_cam_pos - v_vertex_world_pos;
 
 	gl_Position = u_mvp * vec4(a_vertex, 1.0);
+
+	// Calculate the positions for the blur
+    int multiplier = 0;
+    vec2 blurStep;
+   	vec2 singleStepOffset = vec2(1.0, 1.0);
+
+    for (int i = 0; i < GAUSSIAN_SAMPLES; i++)
+   {
+        multiplier = (i - ((GAUSSIAN_SAMPLES - 1) / 2));
+       	// Blur in x (horizontal)
+       	blurStep = float(multiplier) * singleStepOffset;
+        blurCoordinates[i] = gl_Position.xy + blurStep;
+    }
 }
