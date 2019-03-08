@@ -15,8 +15,11 @@ Left to RIght - Iridescence - Pearl Brightness Reflection - Reflection
 
 ## Links
 [GamesDev](https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/)
+
 [Khronos](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/dot.xhtml)
+
 [Khronos](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/max.xhtml)
+
 [StackOverflow](https://stackoverflow.com/questions/11794277/glsl-shader-for-glossy-specular-reflections-on-an-cubemapped-surface)
 
 
