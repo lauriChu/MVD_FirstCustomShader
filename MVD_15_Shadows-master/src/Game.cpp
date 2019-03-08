@@ -91,7 +91,7 @@ void Game::init(int w, int h) {
 	
 	//phong sphere
 	int sphere_entity = ECS.createEntity("phong_sphere");
-	ECS.getComponentFromEntity<Transform>(sphere_entity).translate(1.0f, 0.0f, 5.0f);
+	ECS.getComponentFromEntity<Transform>(sphere_entity).translate(8.5f, 0.0f, 5.0f);
 	Mesh& sphere_mesh = ECS.createComponentForEntity<Mesh>(sphere_entity);	
 	sphere_mesh.geometry = sphere_geom;
 	sphere_mesh.material = mat_iridiscent_index;
@@ -105,7 +105,7 @@ void Game::init(int w, int h) {
 
 	//pearl sphere
 	int pearl_entity = ECS.createEntity("pearl_sphere");
-	ECS.getComponentFromEntity<Transform>(pearl_entity).translate(8.5f, 0.0f, 5.0f);
+	ECS.getComponentFromEntity<Transform>(pearl_entity).translate(0.0f, 0.0f, 5.0f);
 	Mesh& pearl_mesh = ECS.createComponentForEntity<Mesh>(pearl_entity);
 	pearl_mesh.geometry = sphere_geom;
 	pearl_mesh.material = mat_pearl_index;
