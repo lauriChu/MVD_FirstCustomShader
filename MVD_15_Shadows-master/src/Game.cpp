@@ -31,6 +31,7 @@ void Game::init(int w, int h) {
 	Shader* phong_shader = graphics_system_.loadShader("data/shaders/phong.vert", "data/shaders/phong.frag");
 	Shader* reflection_shader = graphics_system_.loadShader("data/shaders/reflection.vert", "data/shaders/reflection.frag");
 	Shader* iridiscent_shader = graphics_system_.loadShader("data/shaders/iridiscent.vert", "data/shaders/iridiscent.frag");
+	Shader* pearl_shader = graphics_system_.loadShader("data/shaders/pearl.vert", "data/shaders/pearl.frag");
 	Shader* blur_shader = graphics_system_.loadShader("data/shaders/blur.vert", "data/shaders/blur.frag");
 	Shader* screen_shader = graphics_system_.loadShader("data/shaders/screen.vert", "data/shaders/screen.frag");
 
@@ -61,6 +62,11 @@ void Game::init(int w, int h) {
 	ref_mat_iris.shader_id = iridiscent_shader->program;
 	ref_mat_iris.cube_map = cubemap_texture;
 
+	int mat_pearl_index = graphics_system_.createMaterial();
+	Material& ref_mat_pearl = graphics_system_.getMaterial(mat_pearl_index);
+	ref_mat_pearl.shader_id = pearl_shader->program;
+	ref_mat_pearl.cube_map = cubemap_texture;
+
 	int mat_reflection_index = graphics_system_.createMaterial();
 	Material& ref_mat = graphics_system_.getMaterial(mat_reflection_index);
 	ref_mat.shader_id = reflection_shader->program;
@@ -85,17 +91,24 @@ void Game::init(int w, int h) {
 	
 	//phong sphere
 	int sphere_entity = ECS.createEntity("phong_sphere");
-	ECS.getComponentFromEntity<Transform>(sphere_entity).translate(1.0f, 6.0f, 5.0f);
+	ECS.getComponentFromEntity<Transform>(sphere_entity).translate(1.0f, 0.0f, 5.0f);
 	Mesh& sphere_mesh = ECS.createComponentForEntity<Mesh>(sphere_entity);	
 	sphere_mesh.geometry = sphere_geom;
 	sphere_mesh.material = mat_iridiscent_index;
 
 	//reflective sphere
     int ref_entity = ECS.createEntity("reflection_sphere");
-    ECS.getComponentFromEntity<Transform>(ref_entity).translate(-1.5f, 6.0f, 5.0f);
+    ECS.getComponentFromEntity<Transform>(ref_entity).translate(-8.5f, 0.0f, 5.0f);
     Mesh& ref_mesh = ECS.createComponentForEntity<Mesh>(ref_entity);
     ref_mesh.geometry = sphere_geom;
     ref_mesh.material = mat_reflection_index;
+
+	//pearl sphere
+	int pearl_entity = ECS.createEntity("pearl_sphere");
+	ECS.getComponentFromEntity<Transform>(pearl_entity).translate(8.5f, 0.0f, 5.0f);
+	Mesh& pearl_mesh = ECS.createComponentForEntity<Mesh>(pearl_entity);
+	pearl_mesh.geometry = sphere_geom;
+	pearl_mesh.material = mat_pearl_index;
 
 	//create camera
 	createFreeCamera_();
