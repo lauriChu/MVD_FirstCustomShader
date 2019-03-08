@@ -14,12 +14,12 @@ Left to RIght - Iridescence - Pearl Brightness Reflection - Reflection
 ![alt back](https://github.com/lauriChu/MVD_FirstCustomShader/blob/master/MVD_15_Shadows-master/2.PNG)
 
 ## Links
-[GamesDev](https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/)
+[https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/](https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/)
 
-[Khronos](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/dot.xhtml)
+[https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/dot.xhtml](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/dot.xhtml)
 
-[Khronos](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/max.xhtml)
+[https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/max.xhtml](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/max.xhtml)
 
-[StackOverflow](https://stackoverflow.com/questions/11794277/glsl-shader-for-glossy-specular-reflections-on-an-cubemapped-surface)
+[https://github.com/genekogan/Processing-Shader-Examples/tree/master/TextureShaders/data](https://github.com/genekogan/Processing-Shader-Examples/tree/master/TextureShaders/data)
 
 
